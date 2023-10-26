@@ -33,6 +33,13 @@ declare class Editor extends ClassicEditor {
         table: {
             contentToolbar: string[];
         };
+        mediaEmbed: {
+            extraProviders: {
+                name: string;
+                url: RegExp[];
+                html: (match: any) => string;
+            }[];
+        };
     };
 }
 export default Editor;

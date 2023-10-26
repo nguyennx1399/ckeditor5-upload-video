@@ -1,4 +1,4 @@
-import { MediaEmbedEditing } from '@ckeditor/ckeditor5-media-embed';
+import MediaEmbedEditing from './mediaembedediting';
 
 /**
  * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
@@ -10,12 +10,11 @@ import { MediaEmbedEditing } from '@ckeditor/ckeditor5-media-embed';
  */
 
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import { createDropdown, CssTransitionDisablerMixin, type DropdownView } from '@ckeditor/ckeditor5-ui';
+import { createDropdown, CssTransitionDisablerMixin, ButtonView, type DropdownView } from '@ckeditor/ckeditor5-ui';
 
-import MediaFormView from '@ckeditor/ckeditor5-media-embed/src/ui/mediaformview';
-import type MediaEmbedCommand from '@ckeditor/ckeditor5-media-embed/src/mediaembedcommand';
+import MediaFormView from './ui/mediaformview';
 import type { LocaleTranslate } from '@ckeditor/ckeditor5-utils';
-import type MediaRegistry from '@ckeditor/ckeditor5-media-embed/src/mediaregistry';
+import type MediaRegistry from './mediaregistry';
 import mediaIcon from './media.svg';
 /**
  * The media embed UI plugin.
@@ -40,8 +39,8 @@ export default class MediaEmbedUI extends Plugin {
 	 */
 	public init(): void {
 		const editor = this.editor;
-		const command: MediaEmbedCommand = editor.commands.get('mediaEmbed')!;
-
+		const command: any = editor.commands.get('mediaEmbed')!;
+		// has upload 
 		editor.ui.componentFactory.add('mediaEmbed', locale => {
 			const dropdown = createDropdown(locale);
 
@@ -51,7 +50,7 @@ export default class MediaEmbedUI extends Plugin {
 		});
 	}
 
-	private _setUpDropdown(dropdown: DropdownView, command: MediaEmbedCommand): void {
+	private _setUpDropdown(dropdown: DropdownView, command: any): void {
 		const editor = this.editor;
 		const t = editor.t;
 		const button = dropdown.buttonView;
@@ -59,8 +58,6 @@ export default class MediaEmbedUI extends Plugin {
 
 		dropdown.once('change:isOpen', () => {
 			const form = new (CssTransitionDisablerMixin(MediaFormView))(getFormValidators(editor.t, registry), editor.locale);
-
-			console.log(form);
 			dropdown.panelView.children.add(form);
 
 			// Note: Use the low priority to make sure the following listener starts working after the
@@ -77,7 +74,23 @@ export default class MediaEmbedUI extends Plugin {
 				form.url = command.value || '';
 				form.urlInputView.fieldView.select();
 				form.enableCssTransitions();
+
 			}, { priority: 'low' });
+
+			// Execute the command when the form.uploadButtonView is clicked.
+			form.uploadButtonView.on('execute', () => {
+				// choose local file
+				const input = document.createElement('input');
+				input.type = 'file';
+				input.accept = 'video/*';
+				input.onchange = e => {
+					const file = (e.target as HTMLInputElement).files![0];
+					const url = command.executeUploadVideo(file);
+					editor.execute('mediaEmbed', url);
+					editor.editing.view.focus();
+				};
+				input.click();
+			});
 
 			dropdown.on('submit', () => {
 				if (form.isValid()) {
@@ -89,6 +102,10 @@ export default class MediaEmbedUI extends Plugin {
 			dropdown.on('change:isOpen', () => form.resetFormStatus());
 			dropdown.on('cancel', () => {
 				editor.editing.view.focus();
+			});
+
+			dropdown.on('upload', () => {
+
 			});
 
 			form.delegate('submit', 'cancel').to(dropdown);
