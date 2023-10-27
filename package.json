@@ -61,5 +61,9 @@
   "bugs": {
     "url": "https://github.com/nguyennx1399/nadal-ckeditor5-upload-video/issues"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "homepage": "https://github.com/nguyennx1399/nadal-ckeditor5-upload-video#readme"
 }
