@@ -83,9 +83,9 @@ export default class MediaEmbedUI extends Plugin {
 				const input = document.createElement('input');
 				input.type = 'file';
 				input.accept = 'video/*';
-				input.onchange = e => {
+				input.onchange = async e => {
 					const file = (e.target as HTMLInputElement).files![0];
-					const url = command.executeUploadVideo(file);
+					const url = await command.executeUploadVideo(file);
 					editor.execute('mediaEmbed', url);
 					editor.editing.view.focus();
 				};

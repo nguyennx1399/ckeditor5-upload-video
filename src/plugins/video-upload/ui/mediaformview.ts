@@ -304,17 +304,4 @@ export default class MediaFormView extends View {
 
         return button;
     }
-
-    // private _openFile() {
-    //     const input = document.createElement('input');
-    //     // only content type video
-    //     input.accept = 'video/*';
-    //     input.type = 'file';
-    //     input.onchange = e => {
-    //         const target = e.target as HTMLInputElement;
-    //         const file: File = (target.files as FileList)[0];
-    //         console.log(file);
-    //     };
-    //     input.click();
-    // }
 }

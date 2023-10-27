@@ -40,6 +40,8 @@ declare class Editor extends ClassicEditor {
                 html: (match: any) => string;
             }[];
         };
+        extraPlugins: (typeof MyCustomUploadAdapterPlugin)[];
     };
 }
+declare function MyCustomUploadAdapterPlugin(editor: any): void;
 export default Editor;

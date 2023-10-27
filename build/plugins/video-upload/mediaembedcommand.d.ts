@@ -3,6 +3,7 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 import { Command } from 'ckeditor5/src/core';
+import { FileLoader } from '@ckeditor/ckeditor5-upload';
 /**
  * The insert media command.
  *
@@ -33,6 +34,6 @@ export default class MediaEmbedCommand extends Command {
      * @param url The URL of the media.
      */
     execute(url: string): void;
-    executeUploadVideo(file: File): string | undefined;
-    private uploadVideo;
+    executeUploadVideo(file: File): Promise<unknown>;
+    protected _readAndUpload(loader: FileLoader): Promise<unknown>;
 }

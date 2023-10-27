@@ -154,7 +154,7 @@ export default class MediaEmbedEditing extends Plugin {
                     name: 'facebook',
                     url: /^facebook\.com/
                 },
-                
+
             ]
         } as MediaEmbedConfig);
 
@@ -174,7 +174,6 @@ export default class MediaEmbedEditing extends Plugin {
 
         const registry = this.registry;
         const command = new MediaEmbedCommand(editor)
-        console.log(1111, command);
         editor.commands.add('mediaEmbed', command);
 
         // Configure the schema.
@@ -281,5 +280,7 @@ export default class MediaEmbedEditing extends Plugin {
 
                 dispatcher.on<UpcastElementEvent>('element:figure', converter);
             });
+
+
     }
 }

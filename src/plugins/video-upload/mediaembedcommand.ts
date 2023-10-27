@@ -11,9 +11,10 @@ import type { DocumentSelection, Element, Model, Selection, Position } from 'cke
 import { Command } from 'ckeditor5/src/core';
 import { findOptimalInsertionRange } from 'ckeditor5/src/widget';
 
-import { getSelectedMediaModelWidget, insertMedia } from '@ckeditor/ckeditor5-media-embed/src/utils';
+import { getSelectedMediaModelWidget, insertMedia } from './utils';
 
-import { FileRepository } from '@ckeditor/ckeditor5-upload';
+import { FileRepository, FileLoader } from '@ckeditor/ckeditor5-upload';
+import { Notification } from '@ckeditor/ckeditor5-ui';
 
 
 /**
@@ -44,6 +45,7 @@ export default class MediaEmbedCommand extends Command {
         this.value = selectedMedia ? selectedMedia.getAttribute('url') as string : undefined;
 
         this.isEnabled = isMediaSelected(selection) || isAllowedInParent(selection, model);
+
     }
 
     /**
@@ -69,22 +71,57 @@ export default class MediaEmbedCommand extends Command {
         }
     }
 
-    public executeUploadVideo(file: File) {
-        return this.uploadVideo(file)
-    }
-
-    private uploadVideo(file: File): string | undefined {
+    public async executeUploadVideo(file: File) {
         const editor = this.editor;
         const fileRepository = editor.plugins.get(FileRepository);
         const loader = fileRepository.createLoader(file);
+        // Do not throw when upload adapter is not set.FileRepository will log an error anyway.
+        if (!loader) {
+            return;
+        }
+        const { status } = loader
+        if (status == 'idle') {
+            const res = await this._readAndUpload(loader)
+            return res
+        }
+    }
 
-        // Do not throw when upload adapter is not set. FileRepository will log an error anyway.
-        // if (!loader) {
-        //     return;
-        // }
+    protected async _readAndUpload(loader: FileLoader) {
+        const editor = this.editor;
+        const t = editor.locale.t;
+        const fileRepository = editor.plugins.get(FileRepository);
+        const notification = editor.plugins.get(Notification);
 
-        const url = 'https://youtu.be/ZHqTFjlfJeI'
-        return url
+
+        return loader.read()
+            .then(() => {
+                const promise = loader.upload();
+                return promise;
+            })
+            .then(data => {
+                return data?.default
+            })
+            .catch(error => {
+                // If status is not 'error' nor 'aborted' - throw error because it means that something else went wrong,
+                // it might be generic error and it would be real pain to find what is going on.
+                if (loader.status !== 'error' && loader.status !== 'aborted') {
+                    throw error;
+                }
+
+                // Might be 'aborted'.
+                if (loader.status == 'error' && error) {
+                    notification.showWarning(error, {
+                        title: t('Upload failed'),
+                        namespace: 'upload'
+                    });
+                }
+
+                clean();
+            });
+
+        function clean() {
+            fileRepository.destroyLoader(loader);
+        }
     }
 }
 

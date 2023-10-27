@@ -29,6 +29,7 @@ import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
 import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import MediaEmbed from './plugins/video-upload';
+import UploadAdapter from './adapter';
 
 // You can read more about extending the build with additional plugins in the "Installing plugins" guide.
 // See https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html for details.
@@ -122,7 +123,18 @@ class Editor extends ClassicEditor {
 				},
 			]
 		},
+		extraPlugins: [MyCustomUploadAdapterPlugin],
 	};
+
+
+}
+
+function MyCustomUploadAdapterPlugin(editor: any) {
+	const myeditor = editor
+	// eslint-disable-next-line no-underscore-dangle
+	myeditor.plugins.get('FileRepository').createUploadAdapter = (loader: any) => {
+		return new UploadAdapter(loader, ((myeditor.config as any)._config.type))
+	}
 }
 
 export default Editor;
