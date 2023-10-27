@@ -4,7 +4,7 @@
   "description": "A custom CKEditor 5 build made by the CKEditor 5 online builder.",
   "version": "0.0.1",
   "license": "SEE LICENSE IN LICENSE.md",
-  "private": true,
+  "private": false,
   "main": "./build/ckeditor.js",
   "types": "./build/ckeditor.d.ts",
   "dependencies": {
@@ -46,5 +46,20 @@
   "scripts": {
     "build": "webpack --mode production",
     "postbuild": "tsc --declaration --declarationDir build --stripInternal --emitDeclarationOnly"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyennx1399/nadal-ckeditor5-upload-video.git"
+  },
+  "keywords": [
+    "ckeditor5",
+    "ckeditor",
+    "upload",
+    "video",
+    "plugin"
+  ],
+  "bugs": {
+    "url": "https://github.com/nguyennx1399/nadal-ckeditor5-upload-video/issues"
+  },
+  "homepage": "https://github.com/nguyennx1399/nadal-ckeditor5-upload-video#readme"
 }
