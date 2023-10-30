@@ -1,10 +1,9 @@
 {
-  "name": "@nadal/ckeditor5-upload-video",
+  "name": "@nadalnguyen/ckeditor5-upload-video",
   "author": "CKSource",
   "description": "A custom CKEditor 5 build made by the CKEditor 5 online builder.",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "license": "SEE LICENSE IN LICENSE.md",
-  "private": false,
   "main": "./build/ckeditor.js",
   "types": "./build/ckeditor.d.ts",
   "dependencies": {
@@ -63,7 +62,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org"
   },
   "homepage": "https://github.com/nguyennx1399/nadal-ckeditor5-upload-video#readme"
 }

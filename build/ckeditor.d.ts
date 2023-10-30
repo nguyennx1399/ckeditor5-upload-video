@@ -21,7 +21,7 @@ import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import MediaEmbed from './plugins/video-upload';
 declare class Editor extends ClassicEditor {
-    static builtinPlugins: (typeof MediaEmbed | typeof Alignment | typeof Autoformat | typeof BlockQuote | typeof Bold | typeof CloudServices | typeof Essentials | typeof FontFamily | typeof Heading | typeof Image | typeof ImageCaption | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof Italic | typeof Link | typeof List | typeof Paragraph | typeof PasteFromOffice | typeof PictureEditing | typeof Table | typeof TableToolbar | typeof TextTransformation)[];
+    static builtinPlugins: (typeof Alignment | typeof TextTransformation | typeof Autoformat | typeof Bold | typeof Italic | typeof BlockQuote | typeof CloudServices | typeof Essentials | typeof FontFamily | typeof Paragraph | typeof Heading | typeof Image | typeof ImageCaption | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof Link | typeof List | typeof PasteFromOffice | typeof Table | typeof TableToolbar | typeof MediaEmbed | typeof PictureEditing)[];
     static defaultConfig: {
         toolbar: {
             items: string[];

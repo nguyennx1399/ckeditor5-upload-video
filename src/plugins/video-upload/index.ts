@@ -11,7 +11,7 @@ import { Plugin } from '@ckeditor/ckeditor5-core';
 import { Widget } from '@ckeditor/ckeditor5-widget';
 
 import MediaEmbedEditing from './mediaembedediting';
-import AutoMediaEmbed from '@ckeditor/ckeditor5-media-embed/src/automediaembed';
+import AutoMediaEmbed from './automediaembed';
 import MediaEmbedUI from './MediaEmbedUI';
 
 import '../../mediaembed.css';
