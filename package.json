@@ -2,7 +2,7 @@
   "name": "@nadalnguyen/ckeditor5-upload-video",
   "author": "CKSource",
   "description": "A custom CKEditor 5 build made by the CKEditor 5 online builder.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "./build/ckeditor.js",
   "types": "./build/ckeditor.d.ts",
