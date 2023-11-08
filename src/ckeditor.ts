@@ -28,6 +28,8 @@ import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
 import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
 import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
+import { HtmlEmbed } from '@ckeditor/ckeditor5-html-embed';
+
 import MediaEmbed from './plugins/video-upload';
 import UploadAdapter from './adapter';
 
@@ -59,7 +61,8 @@ class Editor extends ClassicEditor {
 		Table,
 		TableToolbar,
 		TextTransformation,
-		MediaEmbed
+		MediaEmbed,
+		HtmlEmbed
 
 	];
 
@@ -85,6 +88,7 @@ class Editor extends ClassicEditor {
 				'fontFamily',
 				'alignment',
 				'mediaEmbed',
+				'htmlEmbed',
 			]
 		},
 		language: 'en',

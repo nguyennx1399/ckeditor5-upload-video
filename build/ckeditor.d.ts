@@ -19,9 +19,10 @@ import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
 import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
 import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
+import { HtmlEmbed } from '@ckeditor/ckeditor5-html-embed';
 import MediaEmbed from './plugins/video-upload';
 declare class Editor extends ClassicEditor {
-    static builtinPlugins: (typeof Alignment | typeof TextTransformation | typeof Autoformat | typeof Bold | typeof Italic | typeof BlockQuote | typeof CloudServices | typeof Essentials | typeof FontFamily | typeof Paragraph | typeof Heading | typeof Image | typeof ImageCaption | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof Link | typeof List | typeof PasteFromOffice | typeof Table | typeof TableToolbar | typeof MediaEmbed | typeof PictureEditing)[];
+    static builtinPlugins: (typeof Alignment | typeof TextTransformation | typeof Autoformat | typeof Bold | typeof Italic | typeof BlockQuote | typeof CloudServices | typeof Essentials | typeof FontFamily | typeof Paragraph | typeof Heading | typeof Image | typeof ImageCaption | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof Link | typeof List | typeof PasteFromOffice | typeof Table | typeof TableToolbar | typeof HtmlEmbed | typeof MediaEmbed | typeof PictureEditing)[];
     static defaultConfig: {
         toolbar: {
             items: string[];
