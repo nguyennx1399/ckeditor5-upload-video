@@ -11,7 +11,7 @@ import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
 import { FontFamily } from '@ckeditor/ckeditor5-font';
 import { Heading } from '@ckeditor/ckeditor5-heading';
-import { Image, ImageCaption, ImageStyle, ImageToolbar, ImageUpload, PictureEditing } from '@ckeditor/ckeditor5-image';
+import { Image, ImageCaption, ImageStyle, ImageToolbar, ImageUpload, ImageResize, PictureEditing } from '@ckeditor/ckeditor5-image';
 import { Indent } from '@ckeditor/ckeditor5-indent';
 import { Link } from '@ckeditor/ckeditor5-link';
 import { List } from '@ckeditor/ckeditor5-list';
@@ -22,7 +22,7 @@ import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { HtmlEmbed } from '@ckeditor/ckeditor5-html-embed';
 import MediaEmbed from './plugins/video-upload';
 declare class Editor extends ClassicEditor {
-    static builtinPlugins: (typeof Alignment | typeof TextTransformation | typeof Autoformat | typeof Bold | typeof Italic | typeof BlockQuote | typeof CloudServices | typeof Essentials | typeof FontFamily | typeof Paragraph | typeof Heading | typeof Image | typeof ImageCaption | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof Link | typeof List | typeof PasteFromOffice | typeof Table | typeof TableToolbar | typeof HtmlEmbed | typeof MediaEmbed | typeof PictureEditing)[];
+    static builtinPlugins: (typeof Alignment | typeof TextTransformation | typeof Autoformat | typeof Bold | typeof Italic | typeof BlockQuote | typeof CloudServices | typeof Essentials | typeof FontFamily | typeof Paragraph | typeof Heading | typeof Image | typeof ImageCaption | typeof ImageResize | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof Link | typeof List | typeof PasteFromOffice | typeof Table | typeof TableToolbar | typeof HtmlEmbed | typeof MediaEmbed | typeof PictureEditing)[];
     static defaultConfig: {
         toolbar: {
             items: string[];

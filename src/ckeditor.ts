@@ -19,6 +19,7 @@ import {
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload,
+	ImageResize,
 	PictureEditing
 } from '@ckeditor/ckeditor5-image';
 import { Indent } from '@ckeditor/ckeditor5-indent';
@@ -62,8 +63,8 @@ class Editor extends ClassicEditor {
 		TableToolbar,
 		TextTransformation,
 		MediaEmbed,
-		HtmlEmbed
-
+		HtmlEmbed,
+		ImageResize
 	];
 
 	public static override defaultConfig = {
