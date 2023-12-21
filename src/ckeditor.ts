@@ -118,8 +118,8 @@ class Editor extends ClassicEditor {
 					html: (match: any) => {
 						const src = match.input;
 						return (
-							'<div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 56.2493%;pointer-events: auto;">' +
-							'<video controls style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;" src="' + src + '">' +
+							'<div style="position: relative;pointer-events: auto;">' +
+							'<video controls style="width: 100%; height: 100%;" src="' + src + '">' +
 							'</video>' +
 							'</div>'
 						);

@@ -42,7 +42,7 @@ export default class MediaEmbedEditing extends Plugin {
         super(editor);
         editor.config.define('mediaEmbed', {
             elementName: 'oembed',
-            providers: [
+            providers: [  
                 {
                     name: 'dailymotion',
                     url: /^dailymotion\.com\/video\/(\w+)/,
